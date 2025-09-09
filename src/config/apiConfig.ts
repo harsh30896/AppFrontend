@@ -6,14 +6,18 @@
 // Determine the appropriate base URL based on the platform and environment
 export const getBaseUrl = () => {
   // For development environment
-  if (__DEV__) {
-    // Prefer LAN IP when running on a physical device via Expo Go
-    // Update this to your machine's LAN IP if it changes
-    const LAN_IP = 'http://192.168.1.12:8080';
-    if (Platform.OS === 'ios' || Platform.OS === 'android') {
-      return LAN_IP;
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    // In Replit environment, use the public domain
+    const replitDomain = process.env.REPL_SLUG && process.env.REPL_OWNER 
+      ? `https://${process.env.REPL_SLUG}-${process.env.REPL_OWNER}.replit.app`
+      : window.location.origin;
+    
+    if (Platform.OS === 'web') {
+      // For web in development, use the current domain with backend port
+      return replitDomain.replace(':5000', ':8080'); // Assuming backend runs on 8080
     }
-    // For web or simulator on the same machine
+    
+    // For mobile apps in development
     return 'http://localhost:8080';
   }
   
