@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { ThemeProvider } from './src/contexts/ThemeContext';
@@ -14,6 +14,8 @@ export default function App() {
     setShowSplash(false);
   };
 
+  // Simple test to see if app is loading
+  console.log('App component rendering...');
 
   return (
     <SafeAreaProvider>
