@@ -30,7 +30,7 @@ const AppNavigator: React.FC = () => {
   const { theme } = useTheme();
 
   if (isLoading) {
-    return <SplashScreen />;
+    return <SplashScreen onFinish={() => {}} />;
   }
 
   return (

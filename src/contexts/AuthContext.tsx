@@ -36,7 +36,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (isAuth) {
         const userData = await authService.getStoredUser();
         if (userData) {
-          setUser(userData);
+          setUser({
+            ...userData,
+            isVerified: false,
+            notificationSettings: {
+              pushNotifications: true,
+              emailNotifications: true,
+              soundEnabled: true,
+              vibrationEnabled: true,
+              messageNotifications: true,
+              groupNotifications: true,
+              callNotifications: true,
+              mentionNotifications: true,
+            reactionNotifications: true,
+            }
+          });
         }
       }
     } catch (error) {
@@ -55,7 +69,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       const response = await authService.login(credentials);
       if (response.user) {
-        setUser(response.user);
+        setUser({
+          ...response.user,
+          isVerified: false,
+          notificationSettings: {
+            pushNotifications: true,
+            emailNotifications: true,
+            soundEnabled: true,
+            vibrationEnabled: true,
+            messageNotifications: true,
+            groupNotifications: true,
+            callNotifications: true,
+            mentionNotifications: true,
+            reactionNotifications: true,
+          }
+        });
         return true;
       }
       return false;
@@ -75,7 +103,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       const response = await authService.register(userData);
       if (response.user) {
-        setUser(response.user);
+        setUser({
+          ...response.user,
+          isVerified: false,
+          notificationSettings: {
+            pushNotifications: true,
+            emailNotifications: true,
+            soundEnabled: true,
+            vibrationEnabled: true,
+            messageNotifications: true,
+            groupNotifications: true,
+            callNotifications: true,
+            mentionNotifications: true,
+            reactionNotifications: true,
+          }
+        });
         return true;
       }
       return false;

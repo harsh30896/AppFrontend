@@ -35,7 +35,7 @@ const MainTabNavigator: React.FC = () => {
               iconName = focused ? 'settings' : 'settings-outline';
               break;
             default:
-              iconName = 'circle';
+              iconName = 'ellipse';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
