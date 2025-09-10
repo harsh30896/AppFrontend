@@ -128,3 +128,5 @@ The React Native app is now properly configured to communicate with the backend 
 - Handle real-time notifications
 
 The main limitation is that services need to be accessed directly (bypassing the gateway) until the Eureka service discovery issue is resolved.
+
+

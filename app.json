@@ -24,6 +24,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "jsEngine": "jsc"
+  },
+  "imports": [
+    {
+      "module": "./someModule",
+      "namedExports": ["Something"]
     }
-  }
+  ],
+  "main": "./someModule"
 }

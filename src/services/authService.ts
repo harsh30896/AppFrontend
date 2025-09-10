@@ -7,6 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_ENDPOINTS, getFullUrl } from '../config/apiConfig';
 import { LoginRequest, RegisterRequest, AuthResponse, User, ApiResponse } from '../types';
 
+const baseUri = typeof window !== "undefined" && window.location ? window.location.origin : "http://localhost:3000";
+
 class AuthService {
   private baseUrl: string;
   private tokenRefreshPromise: Promise<AuthResponse> | null = null;

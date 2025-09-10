@@ -72,9 +72,13 @@ export const API_ENDPOINTS = {
 };
 
 // Full URLs (with base URL)
-export const getFullUrl = (endpoint: string) => {
-  return `${getBaseUrl()}${endpoint}`;
-};
+export function getFullUrl(path: string): string {
+  const origin =
+    typeof window !== "undefined" && window.location
+      ? window.location.origin
+      : "http://localhost:3000";
+  return `${origin}${path}`;
+}
 
 // WebSocket URL
 export const getWebSocketUrl = () => {

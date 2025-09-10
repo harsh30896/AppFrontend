@@ -1,36 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AuthProvider } from './src/contexts/AuthContext';
-import { ThemeProvider } from './src/contexts/ThemeContext';
-import { ChatProvider } from './src/contexts/ChatContext';
-import AppNavigator from './src/navigation/AppNavigator';
-import SplashScreen from './src/components/SplashScreen';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import { View, Text, ActivityIndicator } from 'react-native';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [loading, setLoading] = React.useState(true);
 
-  const handleSplashFinish = () => {
-    setShowSplash(false);
-  };
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
 
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <ChatProvider>
-            {showSplash ? (
-              <SplashScreen onFinish={handleSplashFinish} />
-            ) : (
-              <>
-                <AppNavigator />
-                <StatusBar style="light" />
-              </>
-            )}
-          </ChatProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
